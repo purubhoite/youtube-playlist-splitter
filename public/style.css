@@ -107,3 +107,9 @@ footer p {
     font-size: 0.8rem;
     color: #aaa;
 }
+
+#paypal-container-3M6A97GY2PBDA {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
