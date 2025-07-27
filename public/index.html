@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Playlist Splitter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Playlist Splitter ✂️</h1>
+        <p>Enter a public YouTube playlist URL and the video range. A new playlist will be created on our public channel.</p>
+
+        <div class="input-group">
+            <label for="playlist-url">Playlist URL</label>
+            <input type="text" id="playlist-url" placeholder="https://www.youtube.com/playlist?list=...">
+        </div>
+        <div class="input-group-inline">
+            <div class="input-group">
+                <label for="start-video">Start Video #</label>
+                <input type="number" id="start-video" min="1" value="1">
+            </div>
+            <div class="input-group">
+                <label for="end-video">End Video #</label>
+                <input type="number" id="end-video" min="1" value="10">
+            </div>
+        </div>
+        <button id="create-button">Create Split Playlist</button>
+
+        <div id="status-log">
+            <h2>Log</h2>
+            <pre id="status-output">Enter details above and click create.</pre>
+        </div>
+          <footer>
+            <a href="/privacy.html" target="_blank">Privacy & Disclaimer</a>
+            <p>This site is not affiliated with or endorsed by YouTube.</p>
+        </footer>
+    </div>
+    <script src="client.js"></script>
+</body>
+</html>

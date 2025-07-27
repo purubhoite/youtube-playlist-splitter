@@ -1,0 +1,6 @@
+# Secret files
+.env
+*.json
+
+# Dependencies folder
+node_modules
