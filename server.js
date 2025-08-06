@@ -8,6 +8,7 @@ const rateLimit = require('express-rate-limit');
 
 // Initialize the express app
 const app = express();
+app.set('trust proxy', 1); 
 app.use(cors()); // Enable Cross-Origin Resource Sharing
 app.use(express.json()); // Middleware to parse JSON bodies
 app.use(express.static('public')); // Serve static files from the 'public' directory
