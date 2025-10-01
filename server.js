@@ -23,19 +23,17 @@ const limiter = rateLimit({
 const PORT = process.env.PORT || 3000;
 
 // --- YouTube API Authentication ---
-// This function uses the Service Account key to authorize
+// This function uses the Service Account key to impersonate your user account
 const authenticate = () => {
-    const oAuth2Client = new google.auth.OAuth2(
-        process.env.GOOGLE_CLIENT_ID,
-        process.env.GOOGLE_CLIENT_SECRET,
-        'http://developers.google.com/oauthplayground' // Redirect URI
-    );
-
-    oAuth2Client.setCredentials({
-        refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
+    const auth = new google.auth.GoogleAuth({
+        keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+        scopes: ['https://www.googleapis.com/auth/youtube'],
+        // This tells the service account to act on your behalf
+        clientOptions: {
+            subject: process.env.GOOGLE_USER_TO_IMPERSONATE,
+        }
     });
-
-    return google.youtube({ version: 'v3', auth: oAuth2Client });
+    return google.youtube({ version: 'v3', auth });
 };
 const youtube = authenticate();
 
