@@ -25,20 +25,15 @@ const PORT = process.env.PORT || 3000;
 // --- YouTube API Authentication ---
 // This function uses the Service Account key to impersonate your user account
 const authenticate = () => {
-    // Get the JSON content from the environment variable
-    const keyFileContent = process.env.GOOGLE_APPLICATION_CREDENTIALS;
-    // Parse the JSON string into an object
-    const credentials = JSON.parse(keyFileContent);
-
-    const auth = new google.auth.GoogleAuth({
-        // Use the 'credentials' property with the parsed object
-        credentials,
-        scopes: ['https://www.googleapis.com/auth/youtube'],
-        clientOptions: {
-            subject: process.env.GOOGLE_USER_TO_IMPERSONATE,
-        }
+    const oAuth2Client = new google.auth.OAuth2(
+        process.env.GOOGLE_CLIENT_ID,
+        process.env.GOOGLE_CLIENT_SECRET,
+        'http://developers.google.com/oauthplayground' // Redirect URI
+    );
+    oAuth2Client.setCredentials({
+        refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
     });
-    return google.youtube({ version: 'v3', auth });
+    return google.youtube({ version: 'v3', auth: oAuth2Client });
 };
 const youtube = authenticate();
 
